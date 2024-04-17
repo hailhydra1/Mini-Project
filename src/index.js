@@ -230,5 +230,107 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     return htmlChooseWO;
   };
-  
+
+   // Ask to get permission to access camera
+   const getAccessCam = async () => {
+    if (!webcamElem.paused && WOPose.isLoop) return;
+    loaderElem.style.display = "flex";
+    // Try get permission as well as stream
+    await WOPose.camHandler
+      .start()
+      .then(() => {
+        // Save settings if got access camera to use in future (reload)
+        WOSettings.change({
+          isAccessCamera: true,
+        });
+        loaderElem.style.display = "none";
+        accessCamElem.style.display = "none";
+      })
+      .catch((err) => {
+        console.log("Permission Denied: Webcam Access is Not Granted");
+        console.error(err);
+        // eslint-disable-next-line no-alert
+        alert("Webcam Access is Not Granted, Try to Refresh Page");
+      });
+  };
+
+  // Update and show current time
+  const setCurrTime = () => {
+    const currTime = WOTimer.getCurrTime();
+    timerElem.innerHTML = `${`0${currTime.minutes}`.slice(
+      -2
+    )}:${`0${currTime.seconds}`.slice(-2)}`;
+  };
+
+  // Get configuration
+  const setupChangeWO = async (path) => {
+    await fetch(path)
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(`HTTP error${resp.status}`);
+        }
+        return resp.json();
+      })
+      .then(async (data) => {
+        WOPose.counter.setup(data.rulesCountConfig);
+        const title = `${data.rulesCountConfig.nameWorkout} - ${WOSettings.DBWOSettings.currDuration}`;
+        titleWOElem.innerText = title;
+        resultTitleElem.innerText = title;
+
+        // Setup timer to first play
+        WOTimer.remove();
+        WOTimer.setup({
+          interval: 1000,
+          duration: WOPose.isVideoMode
+            ? Math.floor(webcamElem.duration)
+            : 60 * +WOSettings.DBWOSettings.currDuration.split(" ")[0],
+          type: "DEC",
+          firstDelayDuration: WOPose.isVideoMode ? 0 : 3,
+        });
+        WOTimer.isFirstDelay = !WOPose.isVideoMode;
+        setCurrTime();
+
+        // Setup and load pose detector (movenet or other)
+        await WOPose.setup(data.poseDetectorConfig)
+          .then(() => {
+            console.log("Detector Loaded");
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+
+        // Setup and load classifier (tfjs model)
+        await WOPose.classifier
+          .setup(data.classifierConfig, {
+            width: widthRealVideo,
+            height: heightRealVideo,
+          })
+          .then(async () => {
+            console.log("Classifier Ready to Use");
+            chooseWOElem.style.display = "none";
+            if (WOSettings.DBWOSettings.isAccessCamera) {
+              // It still try to get access (auto) to check if disabled
+              if (!WOPose.isVideoMode) await getAccessCam();
+            } else {
+              loaderElem.style.display = "none";
+              accessCamElem.style.display = "flex";
+            }
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  helpBtnElem.addEventListener("click", () => {
+    helpElem.style.display = "flex";
+  });
+
+  helpOKBtnElem.addEventListener("click", () => {
+    helpElem.style.display = "none";
+  });
+
 })

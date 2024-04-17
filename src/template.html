@@ -230,3 +230,152 @@
         </div>
       </div>
     </div>
+    <!-- Wrapper Score -->
+    <div
+      id="scoresBox"
+      class="flex flex-row justify-center h-screen items-center bg-gray-700/50 absolute w-full z-40"
+      style="display: none"
+    >
+      <div
+        class="flex flex-col items-center w-full max-h-96 h-full max-w-xs bg-white rounded-lg shadow-md overflow-hidden text-gray-600 max-h-screen"
+      >
+        <div class="flex flex-row items-center w-full font-bold">
+          <div
+            id="segJourneyBtn"
+            class="w-1/2 text-center bg-amber-300 p-2 text-gray-600 hover:bg-amber-300 cursor-pointer hover:text-gray-600"
+          >
+            Journey
+          </div>
+          <div
+            id="segBestBtn"
+            class="w-1/2 text-center bg-amber-200 p-2 text-gray-400 hover:bg-amber-300 cursor-pointer hover:text-gray-600"
+          >
+            Best
+          </div>
+        </div>
+        <div
+          id="bodyJourneyBox"
+          class="w-full pt-3 flex-1 overflow-y-auto h-full bg-gray-100"
+        ></div>
+        <div
+          id="bodyBestScoreBox"
+          class="w-full pt-3 px-3 flex-1 overflow-y-auto h-full bg-gray-100"
+          style="display: none"
+        ></div>
+        <div
+          class="flex flex-row justify-center items-center border-t-2 py-2 w-full"
+        >
+          <div
+            id="scoresOKBtn"
+            class="bg-yellow-500 text-white py-1.5 px-3 text-xl font-bold rounded-lg hover:bg-amber-500 cursor-pointer mr-2"
+          >
+            OK
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Wrapper Help -->
+    <div
+      id="helpBox"
+      class="flex flex-row justify-center h-screen items-center bg-gray-700/50 absolute w-full z-40"
+      style="display: none"
+    >
+      <div
+        class="flex flex-col items-center w-full max-h-96 h-full max-w-xs bg-white rounded-lg shadow-md overflow-hidden text-gray-600 max-h-screen"
+      >
+        <div class="flex flex-row items-center w-full font-bold">
+          <div
+            id="segHowToUseBtn"
+            class="w-1/2 text-center bg-amber-300 p-2 text-gray-600 hover:bg-amber-300 cursor-pointer hover:text-gray-600"
+          >
+            How to Use
+          </div>
+          <div
+            id="segAboutBtn"
+            class="w-1/2 text-center bg-amber-200 p-2 text-gray-400 hover:bg-amber-300 cursor-pointer hover:text-gray-600"
+          >
+            About
+          </div>
+        </div>
+        <div
+          id="bodyHowToUseBox"
+          class="w-full p-3 flex-1 overflow-y-auto h-full text-sm font-medium flex flex-col items-center text-justify text-gray-600"
+        >
+          <p class="mb-3">
+            Choose the type of workout and duration, you can change these later
+            via the settings menu.
+          </p>
+          <img
+            class="w-1/3 mb-3"
+            src="./img/undraw_choose_re_7d5a.svg"
+            alt="Choose Workout and Duration"
+          />
+          <p class="mb-3">
+            Press start button to start, and immediately prepare yourself to do
+            the workout.
+          </p>
+          <img
+            class="w-1/3 mb-3"
+            src="./img/undraw_press_play_re_85bj.svg"
+            alt="Press Start"
+          />
+          <p class="mb-3">
+            Try to get optimal score (repetition) with proper technique and
+            enjoy!
+          </p>
+          <img
+            class="w-1/3 mb-2"
+            src="./img/undraw_workout_gcgu.svg"
+            alt="Doing Workout"
+          />
+        </div>
+        <div
+          id="bodyAboutBox"
+          class="w-full p-3 flex-1 overflow-y-auto h-full text-xs font-medium flex flex-col items-center text-justify text-gray-600"
+          style="display: none"
+        >
+          <h1 class="text-sm mb-1.5">AI Workout Assistant</h1>
+          <p class="mb-3">
+            An web application to help everyone do workout wherever and
+            whenever. Supported by the pose detector feature to analyze every
+            pose and auto count the number of repetitions made. So, let's create
+            a healthy life by do workout every day!
+          </p>
+          <h1 class="text-sm mb-1.5">How it Work?</h1>
+          <p class="mb-3">
+            Image data which is obtained from video or webcam will be processed
+            by pose detector using the MoveNet model to generate keypoints.
+            Keypoints are used for repetition calculations and input for
+            classifying workout types with Dense Neural Network (DNN) model.
+          </p>
+          <h1 class="text-sm mb-1.5">Privacy Protection</h1>
+          <p class="mb-3">
+            Pose Detector and Classification in the AI Workout Assistant
+            application fully runs on the Client side, so no image data comes
+            out of the user's device. Videos or images processed by the program
+            will be automatically deleted.
+          </p>
+          <h1 class="text-sm mb-1.5">Learn More</h1>
+          <p class="mb-3 text-left w-full">
+            Open Source:
+            <a
+              href="https://github.com/reevald/ai-workout-assistant/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-amber-600 underline"
+              >https://github.com/reevald/ai-workout-assistant/</a
+            >
+          </p>
+        </div>
+        <div
+          class="flex flex-row justify-center items-center border-t-2 py-2 w-full"
+        >
+          <div
+            id="helpOKBtn"
+            class="bg-yellow-500 text-white py-1.5 px-3 text-xl font-bold rounded-lg hover:bg-amber-500 cursor-pointer mr-2"
+          >
+            OK
+          </div>
+        </div>
+      </div>
+    </div>
