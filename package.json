@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reevald/ai-workout-assistant.git"
+    "url": "git+https://github.com/hailhydra1/Mini-Project"
   },
   "author": "Moch. Galang Rivaldo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/reevald/ai-workout-assistant/issues"
+    "url": "https://github.com/hailhydra1/Mini-Project/issues"
   },
-  "homepage": "https://github.com/reevald/ai-workout-assistant#readme",
+  "homepage": "https://github.com/hailhydra1/Mini-Project#readme",
   "devDependencies": {
     "eslint": "^8.32.0",
     "eslint-config-airbnb-base": "^15.0.0",
