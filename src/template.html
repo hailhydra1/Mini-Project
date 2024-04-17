@@ -379,3 +379,266 @@
         </div>
       </div>
     </div>
+    <!-- Coming Soon -->
+    <div
+      class="flex flex-row bg-gray-600 w-full h-screen justify-center items-center"
+    >
+      <div
+        id="parentWebcamBox"
+        class="w-full bg-blue-200 rounded-lg shadow-2xl relative overflow-hidden"
+        style="max-width: 1280px; max-height: 720px"
+      >
+        <video
+          id="webcamBox"
+          class="bg-gray-200 z-10"
+          muted
+          style="max-width: 1280px; max-height: 720px"
+        ></video>
+        <canvas
+          id="cnvPoseBox"
+          class="absolute inset-0 z-20"
+          width="640"
+          height="360"
+        ></canvas>
+        <div
+          class="absolute inset-0 w-full h-full flex flex-row justify-center items-center p-3 z-30"
+        >
+          <div
+            id="delayBox"
+            class="text-9xl font-bold text-white flex flex-row justify-center items-center rounded-full"
+            style="text-shadow: #000 0px 0px 20px"
+          ></div>
+        </div>
+        <div
+          id="resultBox"
+          class="absolute inset-0 w-full h-full flex flex-row justify-center items-center p-3 bg-gray-700/75 z-40"
+          style="display: none"
+        >
+          <div
+            class="bg-white py-3 px-4 rounded-lg flex flex-col items-center text-gray-700"
+          >
+            <div class="text-lg font-bold mb-2">Result</div>
+            <div id="resultTitleBox" class="text-sm mb-1"></div>
+            <div id="resultRepBox" class="text-3xl font-bold mb-1"></div>
+            <div class="text-sm mb-2">Repetitions</div>
+            <div
+              id="resultOKBtn"
+              class="py-1.5 px-4 bg-amber-500 rounded-lg text-white font-bold cursor-pointer"
+            >
+              OK
+            </div>
+          </div>
+        </div>
+        <div
+          class="absolute inset-0 w-full h-full flex flex-row justify-between p-3 z-30"
+        >
+          <div class="flex-1 flex flex-row items-center">
+            <div class="flex flex-col items-center h-full">
+              <div
+                class="w-24 h-24 flex flex-row justify-center items-center rounded-full bg-white"
+              >
+                <span
+                  id="timerBox"
+                  class="font-bold text-3xl text-gray-700"
+                ></span>
+              </div>
+              <div class="flex-1 py-2">
+                <div id="progressBarBox">
+                  <div id="confidenceBox"></div>
+                </div>
+              </div>
+              <div
+                class="w-24 h-24 flex flex-row justify-center items-center rounded-full bg-white"
+              >
+                <span id="countBox" class="font-bold text-5xl text-gray-700">
+                  0
+                </span>
+              </div>
+            </div>
+            <div class="relative h-full w-full flex flex-col justify-center">
+              <div id="imgDirectionSignBox"></div>
+              <div
+                id="adviceWrapBox"
+                style="display: none"
+                class="absolute bottom-0 pl-3 left-0 w-full flex flex-col items-start h-24"
+              >
+                <div class="bg-white w-auto text-xs py-0.5 px-2 rounded-t-lg">
+                  Advice
+                </div>
+                <div
+                  class="rounded-b-lg rounded-tr-lg rounded- px-2 py-1 bg-white text-xs overflow-x-auto whitespace-nowrap max-w-full w-auto overflow-y-auto max-h-14 h-auto"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col items-end">
+            <div class="flex flex-row mb-2">
+              <div
+                id="helpBtn"
+                class="cursor-pointer hover:bg-gray-200 bg-white text-xl font-bold text-gray-700 py-1 px-3 rounded-lg mr-2"
+              >
+                Help
+              </div>
+              <div
+                id="scoresBtn"
+                class="cursor-pointer hover:bg-gray-200 bg-white text-xl font-bold text-gray-700 py-1 px-3 rounded-lg mr-2"
+              >
+                Scores
+              </div>
+              <div
+                id="settingsBtn"
+                class="cursor-pointer hover:bg-gray-200 bg-white text-xl font-bold text-gray-700 py-1 px-3 rounded-lg"
+              >
+                Settings
+              </div>
+            </div>
+            <div
+              id="titleWOBox"
+              class="bg-white text-xs font-bold text-gray-500 py-0.5 px-2 rounded-lg mb-2"
+            ></div>
+            <div
+              id="fpsBox"
+              class="bg-white text-xs font-bold text-gray-500 py-0.5 px-2 rounded-lg"
+            ></div>
+            <div
+              class="flex-1 overflow-y-auto h-full flex flex-col justify-center"
+            >
+              <div
+                id="developerModeBox"
+                style="display: none"
+                class="flex flex-row justify-center items-center"
+              >
+                <!-- record keypoints, upload video, show advice, Activate Webcam -->
+                <div class="flex flex-col items-end mr-1">
+                  <label
+                    id="goAdviceBtn"
+                    for="sliderAdviceBox"
+                    class="cursor-pointer hover:bg-gray-200 flex flex-row items-center bg-white text-sm font-bold text-gray-500 py-0.5 px-2 rounded-lg mb-2"
+                  >
+                    <div>Advice</div>
+                    <div class="switch dev-switch">
+                      <input
+                        type="checkbox"
+                        id="sliderAdviceBox"
+                        name="sliderAdvice"
+                        hidden
+                      />
+                      <span class="slider round dev-slider"></span>
+                    </div>
+                  </label>
+                  <label
+                    id="goWebcamBtn"
+                    for="sliderCameraBox"
+                    class="cursor-pointer hover:bg-gray-200 flex flex-row items-center bg-white text-sm font-bold text-gray-500 py-0.5 px-2 rounded-lg mb-2"
+                  >
+                    <div>Camera</div>
+                    <div class="switch dev-switch">
+                      <input
+                        type="checkbox"
+                        id="sliderCameraBox"
+                        name="sliderCamera"
+                      />
+                      <span class="slider round dev-slider"></span>
+                    </div>
+                  </label>
+                  <label
+                    for="uploadVideoBtn"
+                    class="cursor-pointer hover:bg-gray-200 bg-white text-sm font-bold text-gray-500 py-0.5 px-2 rounded-lg mb-2"
+                  >
+                    <input
+                      type="file"
+                      accept="video/*"
+                      id="uploadVideoBtn"
+                      hidden
+                    />
+                    Upload Video
+                  </label>
+                  <div
+                    id="recordKeypointsBtn"
+                    class="cursor-pointer hover:bg-gray-200 flex flex-row items-center bg-white text-sm font-bold text-gray-500 py-0.5 px-2 rounded-lg"
+                  >
+                    <div
+                      id="pingRecordBox"
+                      class="w-2.5 h-2.5 bg-gray-500 rounded-full mr-1 relative"
+                    >
+                      <div
+                        class="absolute inset-0 w-2.5 h-2.5 bg-red-500 rounded-full animate-ping"
+                        style="display: none"
+                      ></div>
+                    </div>
+                    <div>Record Keypoints</div>
+                  </div>
+                </div>
+                <div
+                  class="text-yellow-500 font-medium"
+                  style="
+                    writing-mode: vertical-rl;
+                    text-shadow: #000 0px 0px 2px;
+                  "
+                >
+                  Developer Mode
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-row items-center">
+              <div
+                id="restartBtn"
+                class="cursor-pointer hover:bg-gray-200 w-12 h-12 mr-3 flex flex-row justify-center items-center rounded-full bg-white"
+                style="display: none"
+              >
+                <svg
+                  height="30"
+                  viewBox="0 0 24 24"
+                  width="30"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="fill-gray-700"
+                    d="m12 5v-4l-5 5 5 5v-4a6 6 0 0 1 6 6 6 6 0 0 1 -6 6 6 6 0 0 1 -6-6h-2a8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0 -8-8z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div
+                  id="resumeBtn"
+                  stroke-width="3px"
+                  class="cursor-pointer hover:bg-gray-200 w-24 h-24 flex flex-row justify-center items-center rounded-full bg-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="60"
+                    height="60"
+                  >
+                    <path
+                      d="M19.376 12.416L8.777 19.482A.5.5 0 0 1 8 19.066V4.934a.5.5 0 0 1 .777-.416l10.599 7.066a.5.5 0 0 1 0 .832z"
+                      class="fill-gray-700"
+                    />
+                  </svg>
+                </div>
+                <div
+                  id="pauseBtn"
+                  class="cursor-pointer hover:bg-gray-200 w-24 h-24 flex flex-row justify-center items-center rounded-full bg-white"
+                  style="display: none"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="60"
+                    height="60"
+                  >
+                    <path
+                      d="M6 5h2v14H6V5zm10 0h2v14h-2V5z"
+                      stroke-width="2"
+                      class="fill-gray-700 stroke-gray-700"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
